@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario Restaurante</title>
+  <style>
+    body {
+      background: radial-gradient(circle at top, #1a1a1a, #000);
+      color: #d4af37;
+      font-family: "Georgia", "Times New Roman", serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before, body::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 80px;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(212,175,55,0.9), rgba(0,0,0,0.3), rgba(212,175,55,0.9));
+      z-index: 0;
+      filter: blur(3px);
+    }
+    body::before { left: 0; border-right: 2px solid #d4af37; }
+    body::after { right: 0; border-left: 2px solid #d4af37; }
+
+    .container {
+      background-color: rgba(17,17,17,0.95);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0px 0px 35px rgba(212, 175, 55, 0.8);
+      width: 450px;
+      z-index: 1;
+      position: relative;
+      text-align: center;
+      border: 1px solid rgba(212,175,55,0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 0px 50px rgba(212, 175, 55, 1);
+    }
+
+    .form-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    .form-header img { width: 55px; height: 55px; object-fit: contain; }
+    .form-header h1 { font-size: 2em; margin: 0; color: #f1c40f; text-shadow: 1px 1px 3px #000; }
+    .form-subtitle { font-size: 1.1em; margin-bottom: 25px; color: #bfa034; font-style: italic; }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      text-align: left;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      font-size: 1.15em;
+    }
+    input[type="text"], input[type="email"], textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: 1px solid #555;
+      border-radius: 10px;
+      background-color: #1a1a1a;
+      color: #f1c40f;
+      font-size: 1em;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+      border-color: #f1c40f;
+      box-shadow: 0 0 8px rgba(241,196,15,0.6);
+      outline: none;
+    }
+    textarea { height: 140px; resize: none; }
+
+    /* ---- Estrellas ---- */
+    .rating {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 5px;
+      justify-content: flex-end;
+      margin-top: 6px;
+    }
+    .rating input { display: none; }
+    .rating label {
+      font-size: 2.2em;
+      color: #555;
+      cursor: pointer;
+      transition: color 0.3s, transform 0.2s;
+    }
+    .rating label:hover,
+    .rating label:hover ~ label { color: #f1c40f; transform: scale(1.2); }
+    .rating input:checked ~ label { color: #f1c40f; }
+
+    button, .nav-button {
+      background-color: #f1c40f;
+      color: black;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 22px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+    button:hover, .nav-button:hover {
+      background-color: #d4ac0d;
+      transform: scale(1.05);
+      box-shadow: 0 0 12px rgba(241,196,15,0.8);
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 25px;
+      gap: 15px;
+    }
+    .nav-buttons a { flex: 1; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Encabezado -->
+    <div class="form-header">
+      <img src="logo.jpeg">
+      <h1>Encuesta del Restaurante</h1>
+    </div>
+    <div class="form-subtitle">¡Gracias por tomarte un momento para darnos tu opinión!</div>
+
+    <!-- Formulario -->
+    <form action="https://formspree.io/f/xqalvydv" method="POST">
+      <label>Nombre:
+        <input type="text" name="nombre" required>
+      </label>
+
+      <label>Email:
+        <input type="email" name="email" required>
+      </label>
+
+      <label>Calificación:
+        <div class="rating">
+          <input type="radio" id="star5" name="calificacion" value="5">
+          <label for="star5">★</label>
+          <input type="radio" id="star4" name="calificacion" value="4">
+          <label for="star4">★</label>
+          <input type="radio" id="star3" name="calificacion" value="3">
+          <label for="star3">★</label>
+          <input type="radio" id="star2" name="calificacion" value="2">
+          <label for="star2">★</label>
+          <input type="radio" id="star1" name="calificacion" value="1">
+          <label for="star1">★</label>
+        </div>
+      </label>
+
+      <label>Comentarios:
+        <textarea name="message" placeholder="Escribe tu experiencia..." required></textarea>
+      </label>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <!-- Botones de navegación -->
+    <div class="nav-buttons">
+      <a href="index.html" class="nav-button">Inicio</a>
+      <a href="Final_1.html" class="nav-button">Menú</a>
+    </div>
+  </div>
+</body>
+</html>

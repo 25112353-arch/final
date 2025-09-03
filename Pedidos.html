@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedidos Restaurante Delicioso</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #f1c40f;
+      overflow-x: hidden;
+    }
+
+    body::before, body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      width: 80px;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(212,175,55,0.8), rgba(0,0,0,0.3), rgba(212,175,55,0.8));
+      z-index: 0;
+    }
+    body::before { left: 0; border-right: 2px solid #d4af37; }
+    body::after { right: 0; border-left: 2px solid #d4af37; }
+
+    .container {
+      background-color: #111;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0px 0px 25px rgba(212, 175, 55, 0.7);
+      margin: 120px auto 60px auto;
+      max-width: 1000px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #000;
+      padding: 15px 0;
+      z-index: 1001;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li { margin: 0 20px; }
+    nav ul li a {
+      text-decoration: none;
+      color: #f1c40f;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    nav ul li a:hover { color: #d4ac0d; }
+
+    header {
+      background-color: #000;
+      color: #f1c40f;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      margin-bottom: 40px;
+    }
+    header h1 { font-size: 3em; margin-bottom: 10px; }
+    header p { font-size: 1.2em; }
+
+    section { padding: 30px 0; }
+    .menu h2 { font-size: 2.5em; text-align: center; margin-bottom: 20px; }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      background-color: #333;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      padding: 20px;
+      align-items: center;
+    }
+    .menu-item img { width: 150px; height: 100px; border-radius: 8px; object-fit: cover; }
+    .menu-item div { flex: 1; margin-left: 20px; }
+    .menu-item h3 { margin: 0; color: #f1c40f; font-size: 1.5em; }
+    .menu-item p { margin: 5px 0; font-size: 1.1em; }
+    .price { font-weight: bold; font-size: 1.3em; color: #f1c40f; }
+
+    .btn-agregar {
+      background-color: #f1c40f;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: 0.3s;
+    }
+    .btn-agregar:hover { background-color: #d4ac0d; }
+
+    .pedido {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 40px;
+    }
+    .pedido h3 { text-align: center; margin-bottom: 20px; }
+
+    .pedido-list {
+      list-style: none;
+      padding: 0;
+    }
+    .pedido-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #555;
+    }
+
+    .total {
+      text-align: right;
+      margin-top: 15px;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #f1c40f;
+    }
+
+    .btn-pedido {
+      display: block;
+      margin: 30px auto;
+      padding: 15px 30px;
+      background-color: #f1c40f;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.2em;
+      transition: 0.3s;
+      text-align: center;
+    }
+    .btn-pedido:hover { background-color: #d4ac0d; }
+
+    footer {
+      background-color: #000;
+      color: #f1c40f;
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="Final_1.html">Menú</a></li>
+      <li><a href="formulario.html">Formulario</a></li>
+      <li><a href="Pedidos.html">Pedidos</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>Realiza tu Pedido</h1>
+      <p>Agrega tus platillos favoritos y consulta el total de tu pedido.</p>
+    </header>
+
+    <section class="menu">
+      <h2>Platillos Disponibles</h2>
+
+      <div class="menu-item">
+        <img src="pizza.jpg" alt="Pizza Margherita">
+        <div>
+          <h3>Pizza Margherita</h3>
+          <p>Salsa de tomate, queso mozzarella y albahaca.</p>
+        </div>
+        <p class="price" data-price="12.99">$12.99</p>
+        <button class="btn-agregar" onclick="agregarAlPedido('Pizza Margherita', 12.99)">Agregar</button>
+      </div>
+
+      <div class="menu-item">
+        <img src="lasagna.jpg" alt="Lasagna de Carne">
+        <div>
+          <h3>Lasagna de Carne</h3>
+          <p>Capas de pasta con carne molida, queso ricotta y salsa bolognesa.</p>
+        </div>
+        <p class="price" data-price="15.99">$15.99</p>
+        <button class="btn-agregar" onclick="agregarAlPedido('Lasagna de Carne', 15.99)">Agregar</button>
+      </div>
+
+      <div class="menu-item">
+        <img src="espagueti.jpg" alt="Espagueti Carbonara">
+        <div>
+          <h3>Espagueti Carbonara</h3>
+          <p>Espaguetis con salsa carbonara, panceta y queso parmesano.</p>
+        </div>
+        <p class="price" data-price="13.99">$13.99</p>
+        <button class="btn-agregar" onclick="agregarAlPedido('Espagueti Carbonara', 13.99)">Agregar</button>
+      </div>
+
+      <div class="menu-item">
+        <img src="ensalada.jpg" alt="Ensalada César">
+        <div>
+          <h3>Ensalada César</h3>
+          <p>Lechuga romana, crutones, pollo y aderezo César casero.</p>
+        </div>
+        <p class="price" data-price="9.99">$9.99</p>
+        <button class="btn-agregar" onclick="agregarAlPedido('Ensalada César', 9.99)">Agregar</button>
+      </div>
+
+      <div class="menu-item">
+        <img src="limonada.jpg" alt="Limonada">
+        <div>
+          <h3>Limonada</h3>
+          <p>Jugo de limón recién exprimido.</p>
+        </div>
+        <p class="price" data-price="5.00">$5.00</p>
+        <button class="btn-agregar" onclick="agregarAlPedido('Limonada', 5.00)">Agregar</button>
+      </div>
+
+    </section>
+
+    <section class="pedido">
+      <h3>Tu Pedido</h3>
+      <ul class="pedido-list" id="pedidoList"></ul>
+      <div class="total" id="total">Total: $0.00</div>
+      <button class="btn-pedido" onclick="hacerPedido()">Hacer tu pedido</button>
+    </section>
+
+    <footer>
+      &copy; 2025 Restaurante Delicioso. Todos los derechos reservados.
+    </footer>
+  </div>
+
+  <script>
+    const pedido = {};
+    let total = 0;
+
+    function agregarAlPedido(nombre, precio) {
+      if (pedido[nombre]) {
+        pedido[nombre].cantidad += 1;
+      } else {
+        pedido[nombre] = { cantidad: 1, precio: precio };
+      }
+      actualizarPedido();
+    }
+
+    function actualizarPedido() {
+      const lista = document.getElementById('pedidoList');
+      lista.innerHTML = '';
+      total = 0;
+
+      for (let nombre in pedido) {
+        const item = document.createElement('li');
+        const cantidad = pedido[nombre].cantidad;
+        const subtotal = pedido[nombre].precio * cantidad;
+        item.textContent = `${nombre} x${cantidad} - $${subtotal.toFixed(2)}`;
+        lista.appendChild(item);
+
+        total += subtotal;
+      }
+
+      document.getElementById('total').textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    function hacerPedido() {
+      let mensaje = "Hola, quisiera hacer el siguiente pedido:%0D%0A";
+      for (let nombre in pedido) {
+        mensaje += `${nombre} x${pedido[nombre].cantidad} - $${(pedido[nombre].precio * pedido[nombre].cantidad).toFixed(2)}%0D%0A`;
+      }
+      mensaje += `Total: $${total.toFixed(2)}`;
+
+      window.location.href = `mailto:civan27g@gmail.com?subject=Pedido Restaurante Delicioso&body=${mensaje}`;
+    }
+  </script>
+
+</body>
+</html>

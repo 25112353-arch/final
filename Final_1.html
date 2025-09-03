@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurante Delicioso</title>
+  <style>
+    /* ---- Fondo y degradados laterales ---- */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #f1c40f;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before, body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      width: 80px;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(212,175,55,0.8), rgba(0,0,0,0.3), rgba(212,175,55,0.8));
+      z-index: 0;
+    }
+    body::before { left: 0; border-right: 2px solid #d4af37; }
+    body::after { right: 0; border-left: 2px solid #d4af37; }
+
+    .container {
+      background-color: #111;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0px 0px 25px rgba(212, 175, 55, 0.7);
+      margin: 120px auto 60px auto;
+      max-width: 1000px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #000;
+      padding: 15px 0;
+      z-index: 1001;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li { margin: 0 20px; }
+    nav ul li a {
+      text-decoration: none;
+      color: #f1c40f;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    nav ul li a:hover { color: #d4ac0d; }
+
+    header {
+      background-color: #000;
+      color: #f1c40f;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      margin-bottom: 40px;
+    }
+    header h1 { font-size: 3em; margin-bottom: 10px; }
+    header p { font-size: 1.2em; }
+
+    section { padding: 30px 0; }
+    .menu h2 { font-size: 2.5em; text-align: center; margin-bottom: 20px; }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      background-color: #333;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      padding: 20px;
+    }
+    .menu-item img { width: 150px; height: 100px; border-radius: 8px; object-fit: cover; }
+    .menu-item div { flex: 1; margin-left: 20px; }
+    .menu-item h3 { margin: 0; color: #f1c40f; font-size: 1.5em; }
+    .menu-item p { margin: 5px 0; font-size: 1.1em; }
+    .price { font-weight: bold; font-size: 1.3em; color: #f1c40f; }
+
+    /* Botón centrado y tamaño adecuado */
+    .btn-descargar {
+      display: inline-block;
+      margin: 30px auto;
+      padding: 12px 25px;
+      background-color: #f1c40f;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.2em;
+      transition: 0.3s;
+      text-align: center;
+      text-decoration: none;
+    }
+    .btn-descargar:hover { background-color: #d4ac0d; }
+
+    /* Centrar el botón en el contenedor */
+    .btn-container {
+      text-align: center;
+    }
+
+    footer {
+      background-color: #000;
+      color: #f1c40f;
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de navegación -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="Final_1.html">Menú</a></li>
+      <li><a href="formulario.html">Formulario</a></li>
+      <li><a href="Pedidos.html">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>Restaurante Delicioso</h1>
+      <p>Disfruta de una experiencia culinaria única con un toque de elegancia.</p>
+    </header>
+
+    <section class="menu">
+      <h2>Nuestros Platillos</h2>
+
+      <div class="menu-item">
+        <img src="pizza.jpg" alt="Pizza Margherita">
+        <div>
+          <h3>Pizza Margherita</h3>
+          <p>Una deliciosa pizza con salsa de tomate, queso mozzarella, albahaca fresca y aceite de oliva.</p>
+        </div>
+        <p class="price">$12.99</p>
+      </div>
+
+      <div class="menu-item">
+        <img src="lasagna.jpg" alt="Lasagna de Carne">
+        <div>
+          <h3>Lasagna de Carne</h3>
+          <p>Capas de pasta rellenas de carne molida, queso ricotta y salsa bolognesa.</p>
+        </div>
+        <p class="price">$15.99</p>
+      </div>
+
+      <div class="menu-item">
+        <img src="ensalada.jpg" alt="Ensalada César">
+        <div>
+          <h3>Ensalada César</h3>
+          <p>Lechuga romana, crutones, pollo a la parrilla y aderezo César casero.</p>
+        </div>
+        <p class="price">$9.99</p>
+      </div>
+
+      <div class="menu-item">
+        <img src="espagueti.jpg" alt="Espagueti Carbonara">
+        <div>
+          <h3>Espagueti Carbonara</h3>
+          <p>Espaguetis con salsa carbonara, panceta y queso parmesano.</p>
+        </div>
+        <p class="price">$13.99</p>
+      </div>
+
+      <div class="menu-item">
+        <img src="limonada.jpg" alt="Limonada">
+        <div>
+          <h3>Limonada</h3>
+          <p>Limonada refrescante con jugo de limón recién exprimido.</p>
+        </div>
+        <p class="price">$5</p>
+      </div>
+
+      <div class="menu-item">
+        <img src="cocacola.jpg" alt="Coca-Cola">
+        <div>
+          <h3>Coca-Cola</h3>
+          <p>Clásica Coca-Cola (Normal o Zero).</p>
+        </div>
+        <p class="price">$6</p>
+      </div>
+
+      <!-- Botón centrado para descargar PDF -->
+      <div class="btn-container">
+        <a href="menu.pdf" download="Menu_Restaurante.pdf" class="btn-descargar">
+          📄 Descarga el Menú
+        </a>
+      </div>
+
+    </section>
+
+    <footer>
+      &copy; 2025 Restaurante Delicioso. Todos los derechos reservados.
+    </footer>
+  </div>
+
+</body>
+</html>
